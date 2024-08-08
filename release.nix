@@ -1,11 +1,14 @@
 { ... }:
 let 
   pkgs = (import <nixpkgs> { config.allowUnfree = true; });
+
+  mkPkg = name: {
+    name = pkgs.name;
+  }
+
 in {
-  packages = with pkgs; [
-    hello
-    stalwart-mail
-    surrealdb
-    elasticsearch
-  ];
+  mkPkg hello;
+  mkPkg stalwart-cli;
+  mkPkg surrealdb;
+  mkPkg elasticsearch;
 }
