@@ -1,9 +1,7 @@
 { ... }:
 let 
-  pkgs = (import <nixpkgs> {});
+  pkgs = (import <nixpkgs> { config.allowUnfree = true; });
 in {
-  pkgs.config.allowUnfree = true;
-
   hello = pkgs.hello;
   stalwart-cli = pkgs.stalwart-mail;
   surrealdb = pkgs.surrealdb;
