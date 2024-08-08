@@ -4,7 +4,7 @@ let
 
   mkPkg = name: {
     name = pkgs.name;
-  }
+  };
 
 in {
   mkPkg hello;
