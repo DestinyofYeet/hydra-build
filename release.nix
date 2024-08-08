@@ -4,4 +4,5 @@ let
 in {
   hello = pkgs.hello;
   stalwart-cli = pkgs.stalwart-mail;
+  surreal-db = pkgs.surreal-db;
 }
