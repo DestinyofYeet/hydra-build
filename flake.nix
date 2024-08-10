@@ -5,18 +5,28 @@
 
   outputs = { self, nixpkgs }: 
   let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-
-    mkBuild = packageNames: 
+    mkBuild = pkgs : packageNames: 
         builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
+
+    forAllSystems = function:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ]
+      (system: function nixpkgs.legacyPackages.${system});
+
   in {
-    packages.${system} = mkBuild [
-      "surrealdb"
-      "hello"
-      "stalwart-mail"
-      "elasticsearch"
-    ];
+    packages = forAllSystems (pkgs: {
+
+        default = mkBuild pkgs [
+        "surrealdb"
+        "hello"
+        "stalwart-mail"
+        "elasticsearch"
+      ];
+    });
 
     hydraJobs = {
       inherit (self)
