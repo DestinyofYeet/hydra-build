@@ -11,11 +11,16 @@
     mkBuild = packageNames: 
         builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
   in {
-    hydraJobs.${system} = mkBuild [
+    packages.${system} = mkBuild [
       "surrealdb"
       "hello"
       "stalwart-mail"
       "elasticsearch"
     ];
+
+    hydraJobs = {
+      inherit (self)
+        packages;
+    };
   };
 }
