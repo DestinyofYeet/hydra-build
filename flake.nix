@@ -6,7 +6,7 @@
   outputs = { self, nixpkgs }: 
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
 
     mkBuild = packageNames: 
         builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
