@@ -11,7 +11,7 @@
     mkBuild = packageNames: 
         builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
   in {
-    packages.${system} = mkBuild [
+    hydraJobs.${system} = mkBuild [
       "surrealdb"
       "hello"
       "stalwart-mail"
