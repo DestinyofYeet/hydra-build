@@ -1,9 +1,23 @@
 { ... }:
 let 
-  pkgs = (import <nixpkgs> { config.allowUnfree = true; });
+  mkBuild = pkgs : packageNames: 
+        builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
+
+    forAllSystems = function:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ]
+      (system: function (import nixpkgs { inherit system; config.allowUnfree = true; }));
+
 in {
-  hello = pkgs.hello;
-  stalwart-cli = pkgs.stalwart-mail;
-  surrealdb = pkgs.surrealdb;
-  elasticsearch = pkgs.elasticsearch;
+  packages = forAllSystems (pkgs: {
+
+      default = mkBuild pkgs [
+      "surrealdb"
+      "hello"
+      "stalwart-mail"
+      "elasticsearch"
+    ];
+  });
 }
