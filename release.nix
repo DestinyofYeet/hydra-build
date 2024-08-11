@@ -20,6 +20,7 @@ in {
       "stalwart-mail"
       "elasticsearch"
       "helix"
+      "neovim"
     ];
   });
 }
