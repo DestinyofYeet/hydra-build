@@ -18,6 +18,7 @@
       (system: function nixpkgs.legacyPackages.${system});
 
   in {
+    nixpkgs.config.allowUnfree = true;
     packages = forAllSystems (pkgs: {
 
         default = mkBuild pkgs [
