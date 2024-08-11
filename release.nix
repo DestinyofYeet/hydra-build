@@ -19,6 +19,7 @@ in {
       "hello"
       "stalwart-mail"
       "elasticsearch"
+      "helix"
     ];
   });
 }
