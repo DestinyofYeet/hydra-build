@@ -1,5 +1,6 @@
 { ... }:
 let 
+  nixpkgs = (import <nixpkgs> {});
   mkBuild = pkgs : packageNames: 
         builtins.listToAttrs (map (name: { inherit name; value = pkgs.${name}; }) packageNames);  
 
