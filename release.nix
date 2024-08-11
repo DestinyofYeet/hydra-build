@@ -8,7 +8,7 @@ let
         "x86_64-linux"
         "aarch64-linux"
       ]
-      (system: function (import nixpkgs { inherit system; config.allowUnfree = true; }));
+      (system: function (import <nixpkgs> { inherit system; config.allowUnfree = true; }));
 
 in {
   packages = forAllSystems (pkgs: {
