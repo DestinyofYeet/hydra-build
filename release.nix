@@ -21,6 +21,7 @@ in {
       "helix"
       "neovim"
       "steam"
+      "steam-run"
     ];
   });
 }
