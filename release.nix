@@ -21,6 +21,7 @@ in {
       "elasticsearch"
       "helix"
       "neovim"
+      "steam"
     ];
   });
 }
