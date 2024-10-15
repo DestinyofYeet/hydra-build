@@ -22,6 +22,7 @@ in {
       "neovim"
       "steam"
       "steam-run"
+      "amdvlk"
     ];
   });
 }
