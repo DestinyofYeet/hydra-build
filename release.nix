@@ -23,6 +23,7 @@ in {
       "steam"
       "steam-run"
       "amdvlk"
+      "yazi"
     ];
   });
 }
